@@ -2,7 +2,7 @@ package com.guet.domain;
 
 /**
  * @author MicahYin
- * @date 2019/7/24 16:23
+ * @date 2019/7/28 16:19
  */
-public class Test {
+public class CarSearchResult {
 }

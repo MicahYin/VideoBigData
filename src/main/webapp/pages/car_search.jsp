@@ -18,7 +18,6 @@
         <script src="//cdn.staticfile.org/es5-shim/4.5.9/es5-shim.min.js"></script>
         <script src="//cdn.staticfile.org/es5-shim/4.5.9/es5-sham.min.js"></script>
     <![endif]-->
-        
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sy.css">
 </head>
@@ -46,7 +45,7 @@
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/car_search.jsp">车辆搜索</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/pedestrian_search.jsp">行人搜索</a></dd>
-                            <dd><a href="${pageContext.request.contextPath}/pages/bike_search.jsp">人骑车搜索</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/pages/face_search.jsp">人脸搜索</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -56,13 +55,11 @@
             <form class="sousuo" action="" method="get">
                 <input type="text" name="keyword" class="search_text" value=""/>
                 <input type="submit" name="submit" class="search_btn" value=""/>
-                <!-- 						<a href="#"><img src="/images/index_sousuo.png"></a>
-                 -->					</form>
+            </form>
             <span> <a href="#"><img src="${pageContext.request.contextPath}/images/index_shezhi.png"></a></span>
             <span> <a href="#"><img src="${pageContext.request.contextPath}/images/index_guanji.png"></a></span>
         </div>
         <div class="clearfix"></div>
-
     </div>
     <!--main主要内容 -->
     <div id="main">
@@ -71,34 +68,31 @@
             <div class="car_main_header">
                 <div class="car_main_header_bt font16"><b>车辆搜索</b></div>
             </div>
-            <form action="" method="post" class="car_main_content clearfix">
-
+            <form action="${pageContext.request.contextPath}/carSearch/findCar.do" method="post" class="car_main_content clearfix">
                 <dl>
                     <dt>开始时间</dt>
-                    <dd><input type="text" name="start_time" value="2019-02-19 00:00:00"></dd>
+                    <dd><input type="text" name="startTime" id="start_time" autocomplete="off"></dd>
                 </dl>
                 <dl>
                     <dt>结束时间</dt>
-                    <dd><input type="text" name="end_time" value="2019-02-26 00:00:00"></dd>
+                    <dd><input type="text" name="endTime" id="end_time" autocomplete="off"></dd>
                 </dl>
                 <dl>
-                    <dt>车辆品牌</dt>
-                    <dd><input type="text" name="brand" value="车辆品牌"></dd>
+                    <dt>车牌</dt>
+                    <dd><input type="text" name="plateNo" placeholder="车牌" autocomplete="off"></dd>
                 </dl>
                 <dl>
-                    <dt>目标车牌</dt>
+                    <dt>车辆类型</dt>
                     <dd>
-                        <input type="text" name="plate_number" readonly value="车牌" />
+                        <input type="text" name="vehicleClass" placeholder="车辆类型" autocomplete="off"/>
                         <div>
                             <span class="top"></span>
                             <span class="bg_top"></span>
                             <ul>
-                                <li class="selected">车牌1</li>
-                                <li>车牌2</li>
-                                <li>车牌3</li>
-                                <li>车牌4</li>
-                                <li>车牌5</li>
-                                <li>车牌6</li>
+                                <li class="selected">不限</li>
+                                <li>面包车</li>
+                                <li>轿车</li>
+                                <li>客车</li>
                             </ul>
                             <span class="bg_bottom"></span>
                             <span class="bottom"></span>
@@ -107,17 +101,19 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt>年检标</dt>
+                    <dt>品牌</dt>
                     <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
+                        <input type="text" name="vehicleBrand" placeholder="品牌" autocomplete="off"/>
                         <div>
                             <span class="top"></span>
                             <span class="bg_top"></span>
                             <ul>
-                                <li class="selected">1年</li>
-                                <li>2年</li>
-                                <li>3年</li>
-
+                                <li class="selected">不限</li>
+                                <li>GMC</li>
+                                <li>MG</li>
+                                <li>MINI</li>
+                                <li>安凯</li>
+                                <li>奥驰</li>
                             </ul>
                             <span class="bg_bottom"></span>
                             <span class="bottom"></span>
@@ -126,16 +122,22 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt>主驾打手机</dt>
+                    <dt>车辆颜色</dt>
                     <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
+                        <input type="text" name="vehicleColor"  placeholder="车辆颜色" autocomplete="off"/>
                         <div>
                             <span class="top"></span>
                             <span class="bg_top"></span>
                             <ul>
-                                <li class="selected">是</li>
-                                <li>否</li>
-
+                                <li class="selected">不限</li>
+                                <li>红色</li>
+                                <li>黑色</li>
+                                <li>白色</li>
+                                <li>棕色</li>
+                                <li>黄色</li>
+                                <li>绿色</li>
+                                <li>蓝色</li>
+                                <li>紫色</li>
                             </ul>
                             <span class="bg_bottom"></span>
                             <span class="bottom"></span>
@@ -144,18 +146,18 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt>行驶方向</dt>
+                    <dt>运动方向</dt>
                     <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
+                        <input type="text" name="direction"  placeholder="运动方向" autocomplete="off"/>
                         <div>
                             <span class="top"></span>
                             <span class="bg_top"></span>
                             <ul>
-                                <li class="selected">东</li>
-                                <li>南</li>
-                                <li>西</li>
-                                <li>北</li>
-
+                                <li class="selected">不限</li>
+                                <li>上</li>
+                                <li>下</li>
+                                <li>左</li>
+                                <li>右</li>
                             </ul>
                             <span class="bg_bottom"></span>
                             <span class="bottom"></span>
@@ -164,16 +166,17 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt>目标天窗</dt>
+                    <dt>运动速度</dt>
                     <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
+                        <input type="text" name="speed"  placeholder="运动速度" autocomplete="off"/>
                         <div>
                             <span class="top"></span>
                             <span class="bg_top"></span>
                             <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
+                                <li class="selected">不限</li>
+                                <li>慢</li>
+                                <li>中</li>
+                                <li>快</li>
                             </ul>
                             <span class="bg_bottom"></span>
                             <span class="bottom"></span>
@@ -181,242 +184,8 @@
                         <font></font>
                     </dd>
                 </dl>
-                <dl>
-                    <dt>目标摆件</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>目标挂件</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>车牌颜色</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">蓝</li>
-                                <li>黄</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>主驾安全带</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">已带</li>
-                                <li>未带</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>行李架</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>主驾吸烟</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>副驾打手机</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-
-                <dl>
-                    <dt>副驾安全带</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">已带</li>
-                                <li>未带</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>副驾吸烟</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>副驾遮阳板</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>主驾遮阳板</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>纸巾盒</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul>
-                                <li class="selected">有</li>
-                                <li>无</li>
-
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font></font>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>目标定位</dt>
-                    <dd>
-                        <input type="text" name="plate_number" readonly value="请选择" />
-                        <div>
-                            <span class="top"></span>
-                            <span class="bg_top"></span>
-                            <ul class="address_select">
-                            </ul>
-                            <span class="bg_bottom"></span>
-                            <span class="bottom"></span>
-                        </div>
-                        <font class="redio"></font>
-                    </dd>
-                </dl>
-
                 <div class="clearfix"></div>
-                <input type="button" name="" class="submit_btn sourch_btn" value=" 查 询 ">
-
+                <input type="submit" name="submit" class="submit_btn sourch_btn" value=" 查 询 ">
             </form>
 
             <div class="car_main_content margin-top-30 sourch_result">
@@ -429,14 +198,11 @@
                     </li>
                     <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
                         <div class="wemzo">
-
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
-
                         </div>
                     </li>
                     <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
                         <div class="wemzo">
-
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
@@ -506,5 +272,17 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/laydate/laydate.js"></script>
+<script>
+    <%--时间选择--%>
+    laydate.render({
+        elem: '#start_time'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#end_time'
+        ,type: 'datetime'
+    });
+</script>
 </body>
 </html>

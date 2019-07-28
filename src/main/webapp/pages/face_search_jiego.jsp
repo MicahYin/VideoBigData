@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Micah
   Date: 2019/7/24
-  Time: 15:06
+  Time: 15:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>车辆搜索结果</title>
+    <title>人脸搜索结果</title>
     <!--[if lt IE 9]>
     <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -67,61 +67,61 @@
         <!-- main左边 -->
         <div class="car_main">
             <div class="car_main_header">
-                <div class="car_main_header_bt font16"><b>车辆搜索结果</b></div>
+                <div class="car_main_header_bt font16"><b>人脸搜索结果</b></div>
             </div>
             <div class="car_main_content">
                 <ul class="resuct">
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
 
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
 
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
 
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
 
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
 
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
+                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>

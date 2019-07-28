@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Micah
   Date: 2019/7/24
-  Time: 15:00
+  Time: 14:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,13 +11,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>人骑车搜索结果</title>
+    <title>人脸搜索</title>
     <!--[if lt IE 9]>
     <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <script src="//cdn.staticfile.org/es5-shim/4.5.9/es5-shim.min.js"></script>
-    <script src="//cdn.staticfile.org/es5-shim/4.5.9/es5-sham.min.js"></script>
+        <script src="//cdn.staticfile.org/es5-shim/4.5.9/es5-shim.min.js"></script>
+        <script src="//cdn.staticfile.org/es5-shim/4.5.9/es5-sham.min.js"></script>
     <![endif]-->
+        
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sy.css">
 </head>
@@ -45,7 +46,7 @@
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/car_search.jsp">车辆搜索</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/pedestrian_search.jsp">行人搜索</a></dd>
-                            <dd><a href="${pageContext.request.contextPath}/pages/bike_search.jsp">人骑车搜索</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/pages/face_search.jsp">人脸搜索</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -67,13 +68,83 @@
         <!-- main左边 -->
         <div class="car_main">
             <div class="car_main_header">
-                <div class="car_main_header_bt font16"><b>人骑车搜索结果</b></div>
+                <div class="car_main_header_bt font16"><b>人脸搜索</b></div>
             </div>
-            <div class="car_main_content">
+            <form action="" method="post" class="car_main_content clearfix">
+
+                <dl>
+                    <dt>开始时间</dt>
+                    <dd><input type="text" name="startTime" id="start_time" autocomplete="off"/></dd>
+                </dl>
+                <dl>
+                    <dt>结束时间</dt>
+                    <dd><input type="text" name="endTime" id="end_time"  autocomplete="off"/></dd>
+                </dl>
+                <dl>
+                    <dt>年龄段</dt><dd>
+                    <input type="text" name="ageRange" readonly placeholder="年龄段" autocomplete="off"/>
+                    <div>
+                        <span class="top"></span>
+                        <span class="bg_top"></span>
+                        <ul>
+                            <li class="selected">不限</li>
+                            <li>儿童</li>
+                            <li>少年</li>
+                            <li>青年</li>
+                            <li>中年</li>
+                            <li>老年</li>
+                        </ul>
+                        <span class="bg_bottom"></span>
+                        <span class="bottom"></span>
+                    </div>
+                    <font></font>
+                </dd>
+                </dl>
+                <dl>
+                    <dt>性别</dt>
+                    <dd>
+                        <input type="text" name="genderCode" readonly  placeholder="性别" autocomplete="off"/>
+                        <div>
+                            <span class="top"></span>
+                            <span class="bg_top"></span>
+                            <ul>
+                                <li class="selected">不限</li>
+                                <li>男</li>
+                                <li>女</li>
+                            </ul>
+                            <span class="bg_bottom"></span>
+                            <span class="bottom"></span>
+                        </div>
+                        <font></font>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>是否佩戴眼镜</dt>
+                    <dd>
+                        <input type="text" name="glassCode" readonly  placeholder="是否佩戴眼镜" autocomplete="off"/>
+                        <div>
+                            <span class="top"></span>
+                            <span class="bg_top"></span>
+                            <ul>
+                                <li class="selected">不限</li>
+                                <li>是</li>
+                                <li>否</li>
+                            </ul>
+                            <span class="bg_bottom"></span>
+                            <span class="bottom"></span>
+                        </div>
+                        <font></font>
+                    </dd>
+                </dl>
+                <div class="clearfix"></div>
+                <input type="button" name="" class="submit_btn sourch_btn" value=" 查 询 ">
+
+            </form>
+
+            <div class="car_main_content margin-top-30 sourch_result">
                 <ul class="resuct">
                     <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
                         <div class="wemzo">
-
                             <p>拍摄时间: 2019-02-19 18:30:23</p>
                         </div>
                     </li>
@@ -128,9 +199,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="car_main_footer">
-                <div class="digg">
-
+            <div class="car_main_footer ">
+                <div class="digg sourch_result">
                     <a href="#" class="disabled1">上一页</a>
                     <a href="#" class="current">1</a>
                     <a href="#?page=2">2</a>
@@ -152,11 +222,24 @@
 
                 </div>
 
+
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/laydate/laydate.js"></script>
+<script>
+    <%--时间选择--%>
+    laydate.render({
+        elem: '#start_time'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#end_time'
+        ,type: 'datetime'
+    });
+</script>
 </body>
 </html>

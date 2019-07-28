@@ -47,7 +47,7 @@
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/car_search.jsp">车辆搜索</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/pedestrian_search.jsp">行人搜索</a></dd>
-                            <dd><a href="${pageContext.request.contextPath}/pages/bike_search.jsp">人骑车搜索</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/pages/face_search.jsp">人脸搜索</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -175,9 +175,9 @@
                 </div>
 
             </div>
-            <!-- 人骑车搜索（实时） -->
+            <!-- 人脸搜索（实时） -->
             <div class="xrss_shishi">
-                <div class="main_right_bt bt_16px">人骑车搜索（实时）</div>
+                <div class="main_right_bt bt_16px">人脸搜索（实时）</div>
                 <div class="main_right_xbt">
                     <div class="fl">六合路七星公园</div>
                     <div class="fr"><a href="#" style="margin-right: 5px;">（更换）</a><a href="#">更多</a></div>

@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author MicahYin
- * @date 2019/7/24 16:20
+ * @date 2019/7/28 10:45
  */
 @Controller
-@RequestMapping("/test")
-public class Test {
+@RequestMapping("/pedestrianSearch")
+public class PedestrianSearch {
 }
