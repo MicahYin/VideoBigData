@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/carSearch")
-public class CarSearch {
+public class CarSearchController {
     /**
      * 车辆搜索的处理方法
      * @return

@@ -31,6 +31,20 @@ public class PedestrianSearchInfo {
     }
 
     public String getRiderCode() {
+        switch (riderCode) {
+            case "不限":
+                riderCode = null;
+                break;
+            case "是":
+                riderCode = "1";
+                break;
+            case "否":
+                riderCode = "2";
+                break;
+            default:
+                riderCode = null;
+                break;
+        }
         return riderCode;
     }
 
@@ -39,6 +53,16 @@ public class PedestrianSearchInfo {
     }
 
     public String getGenderCode() {
+        switch (genderCode){
+            case "不限":
+                genderCode=null;break;
+            case "男":
+                genderCode="1";break;
+            case "女":
+                genderCode="0";break;
+            default:
+                genderCode=null;break;
+        }
         return genderCode;
     }
 
@@ -47,6 +71,20 @@ public class PedestrianSearchInfo {
     }
 
     public String getDirection() {
+        switch (direction){
+            case "不限":
+                direction=null;break;
+            case "上":
+                direction="1";break;
+            case "下":
+                direction="2";break;
+            case "左":
+                direction="3";break;
+            case "右":
+                direction="4";break;
+            default:
+                direction=null;break;
+        }
         return direction;
     }
 
@@ -55,6 +93,18 @@ public class PedestrianSearchInfo {
     }
 
     public String getSpeed() {
+        switch (speed){
+            case "不限":
+                speed=null;break;
+            case "慢":
+                speed="1";break;
+            case "中":
+                speed="2";break;
+            case "快":
+                speed="3";break;
+            default:
+                speed=null;break;
+        }
         return speed;
     }
 
@@ -63,6 +113,28 @@ public class PedestrianSearchInfo {
     }
 
     public String getCoatCol() {
+        switch (coatCol){
+            case "不限":
+                coatCol=null;break;
+            case "红色":
+                coatCol="E";break;
+            case "棕色":
+                coatCol="I";break;
+            case "黄色":
+                coatCol="C";break;
+            case "绿色":
+                coatCol="G";break;
+            case "蓝色":
+                coatCol="H";break;
+            case "紫色":
+                coatCol="F";break;
+            case "黑色":
+                coatCol="J";break;
+            case "白色":
+                coatCol="A";break;
+            default:
+                coatCol=null;break;
+        }
         return coatCol;
     }
 

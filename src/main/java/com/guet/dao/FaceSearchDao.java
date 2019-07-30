@@ -93,7 +93,7 @@ public class FaceSearchDao {
      * @return 总的数据条数
      */
     public Integer selectCount(FaceSearchInfo info){
-        return 0;
+        return 100;
     }
 
 
