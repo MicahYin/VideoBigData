@@ -18,6 +18,9 @@ public class CarSearch {
      */
     @RequestMapping("/findCar.do")
     public void findCar(CarSearchInfo info){
+        System.out.println(info.getSpeed());
+        System.out.println("ff"+info.getSpeed().isEmpty());
+        System.out.println(info.getSpeed().equals(""));
         System.out.println(info);
     }
 }

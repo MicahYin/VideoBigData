@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: Micah
@@ -5,7 +7,7 @@
   Time: 15:00
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html lang="zh">
 <head>
     <meta charset="UTF-8" />
@@ -35,13 +37,13 @@
             <div class="nav">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/pages/index.jsp" >实时展示</a></li>
-                    <li><a href="javascript:;" class="on">流量统计</a>
+                    <li><a href="javascript:;">流量统计</a>
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/day_flow.jsp">日流量统计</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/week_flow.jsp">周流量统计</a></dd>
                         </dl>
                     </li>
-                    <li><a href="javascript:;">目标搜索</a>
+                    <li><a href="javascript:;" class="on">目标搜索</a>
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/car_search.jsp">车辆搜索</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/pedestrian_search.jsp">行人搜索</a></dd>
@@ -71,66 +73,17 @@
             </div>
             <div class="car_main_content">
                 <ul class="resuct">
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
+                    <c:forEach items="${pageResults.datas}" var="face">
+                        <li><a href="#"><img src=${face.bigPicUrl}></a>
                         <div class="wemzo">
-
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
+                            <p>拍摄时间:</p><p>${face.personAppearTime}</p>
                         </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/bike_img.png"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
             <div class="car_main_footer">
                 <div class="digg">
-
                     <a href="#" class="disabled1">上一页</a>
                     <a href="#" class="current">1</a>
                     <a href="#?page=2">2</a>
@@ -145,7 +98,6 @@
                     <a href="#?page=2">下一页 </a>
                     <div class="digg_tz">
                         <form action="" method="post">
-
                             <label>跳到 <input class="tz_sstext" type="text" id="" value="" /> 页</label> <a href="#" class="current">go</a> <a class="current" href="#">返回</a>
                         </form>
                     </div>
