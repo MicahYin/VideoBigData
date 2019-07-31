@@ -46,7 +46,7 @@ public class FaceSearchController {
         mv.addObject("pageResults",results);
         mv.setViewName("face_search_result");
         Date end=new Date();
-        System.out.println("总耗时:"+(end.getTime()-start.getTime()));
+        System.out.println("faceSearch总耗时:"+(end.getTime()-start.getTime()));
         return mv;
     }
 }

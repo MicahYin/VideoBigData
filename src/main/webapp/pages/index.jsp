@@ -36,8 +36,8 @@
             </div>
             <div class="nav">
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp" >实时展示</a></li>
-                    <li><a href="javascript:" class="on">流量统计</a>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp" class="on">实时展示</a></li>
+                    <li><a href="javascript:">流量统计</a>
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/day_flow.jsp">日流量统计</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/week_flow.jsp">周流量统计</a></dd>
@@ -50,6 +50,9 @@
                             <dd><a href="${pageContext.request.contextPath}/pages/face_search.jsp">人脸搜索</a></dd>
                         </dl>
                     </li>
+
+                    <li><a href="#">设备管理</a></li>
+
                 </ul>
             </div>
         </div>

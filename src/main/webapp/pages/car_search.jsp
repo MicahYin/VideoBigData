@@ -35,13 +35,13 @@
             <div class="nav">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/pages/index.jsp" >实时展示</a></li>
-                    <li><a href="javascript:;" class="on">流量统计</a>
+                    <li><a href="javascript:;">流量统计</a>
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/day_flow.jsp">日流量统计</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/week_flow.jsp">周流量统计</a></dd>
                         </dl>
                     </li>
-                    <li><a href="javascript:;">目标搜索</a>
+                    <li><a href="javascript:;" class="on">目标搜索</a>
                         <dl>
                             <dd><a href="${pageContext.request.contextPath}/pages/car_search.jsp">车辆搜索</a></dd>
                             <dd><a href="${pageContext.request.contextPath}/pages/pedestrian_search.jsp">行人搜索</a></dd>
@@ -188,83 +188,8 @@
                 <input type="submit" name="submit" class="submit_btn sourch_btn" value=" 查 询 ">
             </form>
 
-            <div class="car_main_content margin-top-30 sourch_result">
-                <ul class="resuct">
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                    <li><a href="#"><img src="${pageContext.request.contextPath}/images/car_search10.jpg"></a>
-                        <div class="wemzo">
-                            <p>拍摄时间: 2019-02-19 18:30:23</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
             <div class="car_main_footer">
                 <div class="digg sourch_result">
-
-                    <a href="#" class="disabled1">上一页</a>
-                    <a href="#" class="current">1</a>
-                    <a href="#?page=2">2</a>
-                    <a href="#?page=3">3</a>
-                    <a href="#?page=4">4</a>
-                    <a href="http://www.divcss5.com/">5</a>
-                    <a href="#?page=6">6</a>
-                    <a href="#?page=7">7</a>
-                    ...
-                    <a href="#?page=199">199</a>
-                    <a href="#?page=200">200</a>
-                    <a href="#?page=2">下一页 </a>
-                    <div class="digg_tz">
-                        <form action="" method="post">
-                            <label>跳到 <input class="tz_sstext" type="text" id="" value="" /> 页</label> <a href="#" class="current">go</a> <a class="current" href="#">返回</a>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>

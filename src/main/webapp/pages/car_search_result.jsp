@@ -4,16 +4,15 @@
   Created by IntelliJ IDEA.
   User: Micah
   Date: 2019/7/24
-  Time: 15:00
+  Time: 15:06
   To change this template use File | Settings | File Templates.
 --%>
-
 <html lang="zh">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>人脸搜索结果</title>
+    <title>车辆搜索结果</title>
     <!--[if lt IE 9]>
     <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -69,15 +68,15 @@
         <!-- main左边 -->
         <div class="car_main">
             <div class="car_main_header">
-                <div class="car_main_header_bt font16"><b>人脸搜索结果</b></div>
+                <div class="car_main_header_bt font16"><b>车辆搜索结果</b></div>
             </div>
             <div class="car_main_content">
                 <ul class="resuct">
-                    <c:forEach items="${pageResults.datas}" var="face">
-                        <li><a href="#"><img src=${face.bigPicUrl}></a>
-                        <div class="wemzo">
-                            <p>拍摄时间:</p><p>${face.personAppearTime}</p>
-                        </div>
+                    <c:forEach items="${pageResults.datas}" var="car">
+                        <li><a href="#"><img src=${car.storageUrl2}></a>
+                            <div class="wemzo">
+                                <p>拍摄时间:</p><p>${car.appearTime}</p>
+                            </div>
                         </li>
                     </c:forEach>
                 </ul>
@@ -88,13 +87,13 @@
                     <span>总记录数：${pageResults.totalsize} 每页显示:${pageResults.pagesize}</span>
                     <span>
                         <c:if test="${pageResults.pageno!= 1}">
-                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=1">[首页]</a>
-                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=${pageResults.pageno-1}">[上一页]</a>
+                            <a href="${pageContext.request.contextPath }/carSearch/pageQuery.do?currentPage=1">[首页]</a>
+                            <a href="${pageContext.request.contextPath }/carSearch/pageQuery.do?currentPage=${pageResults.pageno-1}">[上一页]</a>
                         </c:if>
 
                         <c:if test="${pageResults.pageno != pageResults.totalno}">
-                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=${pageResults.pageno+1}">[下一页]</a>
-                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=${pageResults.totalno}">[尾页]</a>
+                            <a href="${pageContext.request.contextPath }/carSearch/pageQuery.do?currentPage=${pageResults.pageno+1}">[下一页]</a>
+                            <a href="${pageContext.request.contextPath }/carSearch/pageQuery.do?currentPage=${pageResults.totalno}">[尾页]</a>
                         </c:if>
                     </span>
                 </div>

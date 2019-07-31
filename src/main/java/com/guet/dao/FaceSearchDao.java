@@ -66,16 +66,11 @@ public class FaceSearchDao {
             QueryBuilder queryBuilder=QueryBuilders.matchPhraseQuery("glassCode",info.getGlassCode());
             queryBuilderList.add(queryBuilder);
         }
-        Date start=new Date();
         //查询
         SearchResponse sr=ElasticSearchTool.getSearchResponse(queryBuilderList,searchRequestBuilder,map);
         SearchHits hits=sr.getHits();
-
-        Date end=new Date();
-        System.out.println("链接2耗时"+(end.getTime()-start.getTime()));
         //存放结果的List
         List<FaceSearchResult> faceSearchResults=new ArrayList<FaceSearchResult>();
-
         for(SearchHit hit:hits){
             JSONObject json = JSONObject.fromObject(hit.getSourceAsString());
             FaceSearchResult faceSearchResult=new FaceSearchResult();
@@ -143,11 +138,7 @@ public class FaceSearchDao {
         SearchResponse sr=ElasticSearchTool.getSearchResponse(queryBuilderList,searchRequestBuilder,map);
 
         SearchHits hits=sr.getHits();
-//        Date start=new Date();
-
 //        client.close();
-//        Date end=new Date();
-//        System.out.println("获取链接1耗时"+(end.getTime()-start.getTime()));
         return hits.totalHits;
     }
 
