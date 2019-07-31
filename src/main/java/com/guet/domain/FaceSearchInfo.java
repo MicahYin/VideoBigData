@@ -29,21 +29,23 @@ public class FaceSearchInfo {
     }
 
     public String getAgeRange() {
-        switch (ageRange){
-            case "不限":
-                ageRange=null;break;
-            case"儿童":
-                ageRange="0";break;
-            case"少年":
-                ageRange="1";break;
-            case"青年":
-                ageRange="2";break;
-            case"中年":
-                ageRange="3";break;
-            case"老年":
-                ageRange="4";break;
-            default:
-                ageRange=null;break;
+        if (ageRange!=null){
+            switch (ageRange){
+                case "不限":
+                    ageRange=null;break;
+                case"儿童":
+                    ageRange="0";break;
+                case"少年":
+                    ageRange="1";break;
+                case"青年":
+                    ageRange="2";break;
+                case"中年":
+                    ageRange="3";break;
+                case"老年":
+                    ageRange="4";break;
+                default:
+                    ageRange=null;break;
+            }
         }
         return ageRange;
     }
@@ -53,15 +55,17 @@ public class FaceSearchInfo {
     }
 
     public String getGenderCode() {
-        switch (genderCode){
-            case "不限":
-                genderCode=null;break;
-            case "男":
-                genderCode="1";break;
-            case "女":
-                genderCode="0";break;
-            default:
-                genderCode=null;break;
+        if (genderCode!=null){
+            switch (genderCode){
+                case "不限":
+                    genderCode=null;break;
+                case "男":
+                    genderCode="1";break;
+                case "女":
+                    genderCode="0";break;
+                default:
+                    genderCode=null;break;
+            }
         }
         return genderCode;
     }
@@ -71,15 +75,17 @@ public class FaceSearchInfo {
     }
 
     public String getGlassCode() {
-        switch (glassCode){
-            case "不限":
-                glassCode=null;break;
-            case "是":
-                glassCode="1";break;
-            case "否":
-                glassCode="0";break;
-            default:
-                glassCode=null;break;
+        if (glassCode!=null){
+            switch (glassCode){
+                case "不限":
+                    glassCode=null;break;
+                case "是":
+                    glassCode="1";break;
+                case "否":
+                    glassCode="0";break;
+                default:
+                    glassCode=null;break;
+            }
         }
         return glassCode;
     }

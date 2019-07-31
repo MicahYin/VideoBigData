@@ -6,7 +6,7 @@ import java.util.List;
  */
 public class Page<T>{
     private List<T> datas; //数据
-    private Integer totalsize;//总记录数
+    private Long totalsize;//总记录数
     private Integer totalno; //总页码数
     private Integer pageno; //当前页
     private Integer pagesize; //每页的大小
@@ -19,11 +19,11 @@ public class Page<T>{
         this.datas = datas;
     }
 
-    public Integer getTotalsize() {
+    public Long getTotalsize() {
         return totalsize;
     }
 
-    public void setTotalsize(Integer totalsize) {
+    public void setTotalsize(Long totalsize) {
         this.totalsize = totalsize;
     }
 

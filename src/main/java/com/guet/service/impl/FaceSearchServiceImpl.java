@@ -8,6 +8,7 @@ import com.guet.service.FaceSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,16 +28,13 @@ public class FaceSearchServiceImpl implements FaceSearchService{
         page.setPageno(currentPage);
         int pageSize=10;
         page.setPagesize(pageSize);
-        int totalSize=faceSearchDao.selectCount(info);
+        Long totalSize=faceSearchDao.selectCount(info);
         page.setTotalsize(totalSize);
         Double num = Math.ceil(totalSize/pageSize);//向上取整
         page.setTotalno(num.intValue());
-
         map.put("start",(currentPage-1)*pageSize);
         map.put("size", page.getPagesize());
-
         page.setDatas(faceSearchDao.faceSearch(info,map));
-
         return page;
     }
 }

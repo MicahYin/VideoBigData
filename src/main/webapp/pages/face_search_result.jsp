@@ -84,24 +84,37 @@
             </div>
             <div class="car_main_footer">
                 <div class="digg">
-                    <a href="#" class="disabled1">上一页</a>
-                    <a href="#" class="current">1</a>
-                    <a href="#?page=2">2</a>
-                    <a href="#?page=3">3</a>
-                    <a href="#?page=4">4</a>
-                    <a href="http://www.divcss5.com/">5</a>
-                    <a href="#?page=6">6</a>
-                    <a href="#?page=7">7</a>
-                    ...
-                    <a href="#?page=199">199</a>
-                    <a href="#?page=200">200</a>
-                    <a href="#?page=2">下一页 </a>
-                    <div class="digg_tz">
-                        <form action="" method="post">
-                            <label>跳到 <input class="tz_sstext" type="text" id="" value="" /> 页</label> <a href="#" class="current">go</a> <a class="current" href="#">返回</a>
-                        </form>
-                    </div>
+                    <span>第${pageResults.pageno}/ ${pageResults.totalno}页</span>
+                    <span>总记录数：${pageResults.totalsize} 每页显示:${pageResults.pagesize}</span>
+                    <span>
+                        <c:if test="${pageResults.pageno!= 1}">
+                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=1">[首页]</a>
+                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=${pageResults.pageno-1}">[上一页]</a>
+                        </c:if>
 
+                        <c:if test="${pageResults.pageno != pageResults.totalno}">
+                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=${pageResults.pageno+1}">[下一页]</a>
+                            <a href="${pageContext.request.contextPath }/faceSearch/pageQuery.do?currentPage=${pageResults.totalno}">[尾页]</a>
+                        </c:if>
+                    </span>
+
+                    <%--<a href="#" class="disabled1">上一页</a>--%>
+                    <%--<a href="#" class="current">1</a>--%>
+                    <%--<a href="#?page=2">2</a>--%>
+                    <%--<a href="#?page=3">3</a>--%>
+                    <%--<a href="#?page=4">4</a>--%>
+                    <%--<a href="http://www.divcss5.com/">5</a>--%>
+                    <%--<a href="#?page=6">6</a>--%>
+                    <%--<a href="#?page=7">7</a>--%>
+                    <%--...--%>
+                    <%--<a href="#?page=199">199</a>--%>
+                    <%--<a href="#?page=200">200</a>--%>
+                    <%--<a href="#?page=2">下一页 </a>--%>
+                    <%--<div class="digg_tz">--%>
+                        <%--<form action="" method="post">--%>
+                            <%--<label>跳到 <input class="tz_sstext" type="text" id="" value="" /> 页</label> <a href="#" class="current">go</a> <a class="current" href="${pageContext.request.contextPath}/pages/face_search.jsp">返回</a>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
                 </div>
 
             </div>

@@ -13,6 +13,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,17 +26,20 @@ public class ElasticSearchTool {
     private static int port=9300; // 端口
     private static TransportClient client=null;
     /**
+     * 获取链接处可能存在问题......
      * 获取ElasticSearch Client的静态方法
      * @return client
      */
     public static TransportClient getClient(){
-        Settings settings = Settings.builder().put("cluster.name","guet-application").build();
-        try {
-            client = new PreBuiltTransportClient(settings)
-                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host),port));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            throw new RuntimeException("获取client失败...");
+        if(client==null){
+            Settings settings = Settings.builder().put("cluster.name","guet-application").build();
+            try {
+                client = new PreBuiltTransportClient(settings)
+                        .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host),port));
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+                throw new RuntimeException("获取client失败...");
+            }
         }
         return client;
     }
@@ -74,22 +78,27 @@ public class ElasticSearchTool {
         }
         return after;
     }
-    public static SearchResponse getSearchResponse(List<QueryBuilder> queryBuilderList,SearchRequestBuilder searchRequestBuilder){
+    public static SearchResponse getSearchResponse(List<QueryBuilder> queryBuilderList,SearchRequestBuilder searchRequestBuilder,HashMap<String,Object> map){
         SearchResponse searchResponse;
+        int start= (int) map.get("start");
+        int end= (int) map.get("size");
         switch (queryBuilderList.size()){
             case 0:
                 searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery())
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             case 1:
                 searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery()
                         .must(queryBuilderList.get(0)))
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             case 2:
                 searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery()
                         .must(queryBuilderList.get(0))
                         .must(queryBuilderList.get(1)))
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             case 3:
@@ -97,6 +106,7 @@ public class ElasticSearchTool {
                         .must(queryBuilderList.get(0))
                         .must(queryBuilderList.get(1))
                         .must(queryBuilderList.get(2)))
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             case 4:
@@ -105,6 +115,7 @@ public class ElasticSearchTool {
                         .must(queryBuilderList.get(1))
                         .must(queryBuilderList.get(2))
                         .must(queryBuilderList.get(3)))
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             case 5:
@@ -114,6 +125,7 @@ public class ElasticSearchTool {
                         .must(queryBuilderList.get(2))
                         .must(queryBuilderList.get(3))
                         .must(queryBuilderList.get(4)))
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             case 6:
@@ -125,11 +137,13 @@ public class ElasticSearchTool {
                         .must(queryBuilderList.get(3))
                         .must(queryBuilderList.get(4))
                         .must(queryBuilderList.get(5)))
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
             default:
                 //默认查询全部
                 searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery())
+                        .setFrom(start).setSize(end)
                         .execute()
                         .actionGet();break;
         }
