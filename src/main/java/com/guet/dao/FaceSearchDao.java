@@ -25,7 +25,7 @@ import java.util.List;
 @Repository
 public class FaceSearchDao {
     /**
-     * 查询数据
+     * 人脸查询数据
      * @param info 查询条件
      * @param map 包含当前页和页面大小，默认为第一页
      * @return 查询得到的FaceSearchResult的List集合
@@ -36,6 +36,9 @@ public class FaceSearchDao {
         SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
+        //dataType为1时为人脸
+        QueryBuilder queryBuilderData=QueryBuilders.matchPhraseQuery("dataType","1");
+        queryBuilderList.add(queryBuilderData);
         //开始时间和结束时间都不为NULL
         if (!info.getStartTime().isEmpty()&&!info.getEndTime().isEmpty()){
             String startTime=ElasticSearchTool.formatTime(info.getStartTime());
@@ -51,6 +54,7 @@ public class FaceSearchDao {
             QueryBuilder queryBuilder=QueryBuilders.rangeQuery("personAppearTime").lt(endTime);
             queryBuilderList.add(queryBuilder);
         }
+
         //AgeRange不为Null
         if (!(info.getAgeRange()==null||info.getAgeRange().isEmpty())){
             QueryBuilder queryBuilder=QueryBuilders.matchPhraseQuery("ageGroups", info.getAgeRange());
@@ -98,6 +102,9 @@ public class FaceSearchDao {
         SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
+        //dataType为1时为人脸
+        QueryBuilder queryBuilderData=QueryBuilders.matchPhraseQuery("dataType","1");
+        queryBuilderList.add(queryBuilderData);
         //开始时间和结束时间都不为NULL
         if (!info.getStartTime().isEmpty()&&!info.getEndTime().isEmpty()){
             String startTime=ElasticSearchTool.formatTime(info.getStartTime());

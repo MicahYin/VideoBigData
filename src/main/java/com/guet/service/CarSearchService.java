@@ -1,6 +1,6 @@
 package com.guet.service;
 
-import com.guet.dao.Page;
+import com.guet.domain.Page;
 import com.guet.domain.CarSearchInfo;
 import com.guet.domain.CarSearchResult;
 

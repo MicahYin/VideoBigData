@@ -1,9 +1,8 @@
 package com.guet.controller;
 
-import com.guet.dao.Page;
+import com.guet.domain.Page;
 import com.guet.domain.CarSearchInfo;
 import com.guet.domain.CarSearchResult;
-import com.guet.domain.FaceSearchResult;
 import com.guet.service.CarSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

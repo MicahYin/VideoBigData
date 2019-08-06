@@ -29,69 +29,69 @@ public class FaceSearchInfo {
     }
 
     public String getAgeRange() {
-        if (ageRange!=null){
-            switch (ageRange){
-                case "不限":
-                    ageRange=null;break;
-                case"儿童":
-                    ageRange="0";break;
-                case"少年":
-                    ageRange="1";break;
-                case"青年":
-                    ageRange="2";break;
-                case"中年":
-                    ageRange="3";break;
-                case"老年":
-                    ageRange="4";break;
-                default:
-                    ageRange=null;break;
-            }
-        }
         return ageRange;
     }
 
     public void setAgeRange(String ageRange) {
         this.ageRange = ageRange;
+        if (this.ageRange!=null){
+            switch (ageRange){
+                case "不限":
+                    this.ageRange=null;break;
+                case "儿童":
+                    this.ageRange="0";break;
+                case "少年":
+                    this.ageRange="1";break;
+                case "青年":
+                    this.ageRange="2";break;
+                case "中年":
+                    this.ageRange="3";break;
+                case "老年":
+                    this.ageRange="4";break;
+                default:
+                    this.ageRange=null;break;
+            }
+        }
     }
 
     public String getGenderCode() {
-        if (genderCode!=null){
-            switch (genderCode){
-                case "不限":
-                    genderCode=null;break;
-                case "男":
-                    genderCode="1";break;
-                case "女":
-                    genderCode="0";break;
-                default:
-                    genderCode=null;break;
-            }
-        }
         return genderCode;
     }
 
     public void setGenderCode(String genderCode) {
         this.genderCode = genderCode;
+        if (genderCode!=null){
+            switch (genderCode){
+                case "不限":
+                    this.genderCode=null;break;
+                case "男":
+                    this.genderCode="1";break;
+                case "女":
+                    this.genderCode="0";break;
+                default:
+                    this.genderCode=null;break;
+            }
+        }
     }
 
     public String getGlassCode() {
-        if (glassCode!=null){
-            switch (glassCode){
-                case "不限":
-                    glassCode=null;break;
-                case "是":
-                    glassCode="1";break;
-                case "否":
-                    glassCode="0";break;
-                default:
-                    glassCode=null;break;
-            }
-        }
         return glassCode;
     }
 
     public void setGlassCode(String glassCode) {
         this.glassCode = glassCode;
+        if (glassCode!=null){
+            switch (glassCode){
+                case "不限":
+                    this.glassCode=null;break;
+                case "是":
+                    this.glassCode="1";break;
+                case "否":
+                    this.glassCode="0";break;
+                default:
+                    this.glassCode=null;break;
+            }
+        }
     }
 
     @Override

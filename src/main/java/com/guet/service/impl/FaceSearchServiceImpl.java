@@ -1,16 +1,14 @@
 package com.guet.service.impl;
 
 import com.guet.dao.FaceSearchDao;
-import com.guet.dao.Page;
+import com.guet.domain.Page;
 import com.guet.domain.FaceSearchInfo;
 import com.guet.domain.FaceSearchResult;
 import com.guet.service.FaceSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author MicahYin

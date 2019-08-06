@@ -27,7 +27,7 @@ public class CarSearchDao {
     /**
      *  在ES中查询符合条件的Car
      * @param info 查询条件封装类
-     * @param map
+     * @param map 分页查询时的开始条数以及查询的条数
      * @return 查询结果封装在CarSearchResult中并返回list
      */
     public List<CarSearchResult> carSearch(CarSearchInfo info, HashMap<String, Object> map){
@@ -48,6 +48,10 @@ public class CarSearchDao {
         }else if(!info.getEndTime().isEmpty()){
             String endTime=ElasticSearchTool.formatTime(info.getEndTime());
             QueryBuilder queryBuilder=QueryBuilders.rangeQuery("appearTime").lt(endTime);
+            queryBuilderList.add(queryBuilder);
+        }
+        if (!(info.getPlateNo()==null||info.getPlateNo().isEmpty())){
+            QueryBuilder queryBuilder=QueryBuilders.matchPhraseQuery("plateNo", info.getPlateNo());
             queryBuilderList.add(queryBuilder);
         }
         if (!(info.getVehicleClass()==null||info.getVehicleClass().isEmpty())){
@@ -97,8 +101,8 @@ public class CarSearchDao {
 
     /**
      * 查询总记录条数
-     * @param info
-     * @return
+     * @param info 查询条件
+     * @return 查询到的记录总条数
      */
     public Long selectCount(CarSearchInfo info) {
         TransportClient client= ElasticSearchTool.getClient();
@@ -148,5 +152,4 @@ public class CarSearchDao {
         SearchHits hits=sr.getHits();
         return hits.totalHits;
     }
-
 }

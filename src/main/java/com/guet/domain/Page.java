@@ -1,4 +1,4 @@
-package com.guet.dao;
+package com.guet.domain;
 import java.util.List;
 /**
  * @author MicahYin

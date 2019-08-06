@@ -31,115 +31,125 @@ public class PedestrianSearchInfo {
     }
 
     public String getRiderCode() {
-        switch (riderCode) {
-            case "不限":
-                riderCode = null;
-                break;
-            case "是":
-                riderCode = "1";
-                break;
-            case "否":
-                riderCode = "2";
-                break;
-            default:
-                riderCode = null;
-                break;
-        }
         return riderCode;
     }
 
     public void setRiderCode(String riderCode) {
         this.riderCode = riderCode;
+        if (riderCode!=null){
+            switch (riderCode) {
+                case "不限":
+                    this.riderCode = null;
+                    break;
+                case "是":
+                    this.riderCode = "1";
+                    break;
+                case "否":
+                    this.riderCode = "2";
+                    break;
+                default:
+                    this.riderCode = null;
+                    break;
+            }
+        }
     }
 
     public String getGenderCode() {
-        switch (genderCode){
-            case "不限":
-                genderCode=null;break;
-            case "男":
-                genderCode="1";break;
-            case "女":
-                genderCode="0";break;
-            default:
-                genderCode=null;break;
-        }
         return genderCode;
     }
 
     public void setGenderCode(String genderCode) {
         this.genderCode = genderCode;
+        if (genderCode!=null){
+            switch (genderCode){
+                case "不限":
+                    this.genderCode=null;break;
+                case "男":
+                    this.genderCode="1";break;
+                case "女":
+                    this.genderCode="0";break;
+                default:
+                    this.genderCode=null;break;
+            }
+        }
     }
 
     public String getDirection() {
-        switch (direction){
-            case "不限":
-                direction=null;break;
-            case "上":
-                direction="1";break;
-            case "下":
-                direction="2";break;
-            case "左":
-                direction="3";break;
-            case "右":
-                direction="4";break;
-            default:
-                direction=null;break;
-        }
         return direction;
     }
 
     public void setDirection(String direction) {
         this.direction = direction;
+        if (direction!=null){
+            switch (direction){
+                case "不限":
+                    this.direction=null;break;
+                case "上":
+                    this.direction="1";break;
+                case "下":
+                    this.direction="2";break;
+                case "左":
+                    this.direction="3";break;
+                case "右":
+                    this.direction="4";break;
+                default:
+                    this.direction=null;break;
+            }
+        }
     }
 
     public String getSpeed() {
-        switch (speed){
-            case "不限":
-                speed=null;break;
-            case "慢":
-                speed="1";break;
-            case "中":
-                speed="2";break;
-            case "快":
-                speed="3";break;
-            default:
-                speed=null;break;
-        }
         return speed;
     }
 
     public void setSpeed(String speed) {
         this.speed = speed;
+        if (speed!=null){
+            switch (speed){
+                case "不限":
+                    this.speed=null;break;
+                case "慢":
+                    this.speed="1";break;
+                case "中":
+                    this.speed="2";break;
+                case "快":
+                    this.speed="3";break;
+                default:
+                    this.speed=null;break;
+            }
+        }
     }
 
     public String getCoatCol() {
-        switch (coatCol){
-            case "不限":
-                coatCol=null;break;
-            case "红色":
-                coatCol="E";break;
-            case "棕色":
-                coatCol="I";break;
-            case "黄色":
-                coatCol="C";break;
-            case "绿色":
-                coatCol="G";break;
-            case "蓝色":
-                coatCol="H";break;
-            case "紫色":
-                coatCol="F";break;
-            case "黑色":
-                coatCol="J";break;
-            case "白色":
-                coatCol="A";break;
-            default:
-                coatCol=null;break;
-        }
         return coatCol;
     }
 
     public void setCoatCol(String coatCol) {
         this.coatCol = coatCol;
+        if (coatCol!=null){
+            switch (coatCol){
+                case "不限":
+                    this.coatCol=null;break;
+                case "红色":
+                    this.coatCol="E";break;
+                case "棕色":
+                    this.coatCol="I";break;
+                case "黄色":
+                    this.coatCol="C";break;
+                case "绿色":
+                    this.coatCol="G";break;
+                case "蓝色":
+                    this.coatCol="H";break;
+                case "紫色":
+                    this.coatCol="F";break;
+                case "黑色":
+                    this.coatCol="J";break;
+                case "白色":
+                    this.coatCol="A";break;
+                default:
+                    this.coatCol=null;break;
+            }
+        }
     }
 
     @Override

@@ -73,7 +73,6 @@ public class CarSearchResult {
     public void setVehicleColor(String vehicleColor) {
         this.vehicleColor = vehicleColor;
     }
-
     public String getSpeed() {
         return speed;
     }

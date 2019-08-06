@@ -1,11 +1,10 @@
 package com.guet.controller;
 
-import com.guet.dao.Page;
+import com.guet.domain.Page;
 import com.guet.domain.FaceSearchInfo;
 import com.guet.domain.FaceSearchResult;
+import com.guet.domain.PedestrianSearchResult;
 import com.guet.service.FaceSearchService;
-import com.guet.util.ElasticSearchTool;
-import org.elasticsearch.action.search.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

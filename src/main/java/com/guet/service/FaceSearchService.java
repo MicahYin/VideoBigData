@@ -1,10 +1,8 @@
 package com.guet.service;
 
-import com.guet.dao.Page;
+import com.guet.domain.Page;
 import com.guet.domain.FaceSearchInfo;
 import com.guet.domain.FaceSearchResult;
-
-import java.util.List;
 
 /**
  * @author MicahYin

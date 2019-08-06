@@ -40,130 +40,130 @@ public class CarSearchInfo {
     }
 
     public String getVehicleClass() {
-        if (vehicleClass!=null){
-            switch (vehicleClass){
-                case "不限":
-                    vehicleClass=null;break;
-                case "面包车":
-                    vehicleClass="K40";break;
-                case "轿车":
-                    vehicleClass="K33";break;
-                case "客车":
-                    vehicleClass="K11";break;
-                default:
-                    vehicleClass=null;break;
-            }
-        }
         return vehicleClass;
     }
 
     public void setVehicleClass(String vehicleClass) {
         this.vehicleClass = vehicleClass;
+        if (vehicleClass!=null){
+            switch (vehicleClass){
+                case "不限":
+                    this.vehicleClass=null;break;
+                case "面包车":
+                    this.vehicleClass="K40";break;
+                case "轿车":
+                    this.vehicleClass="K33";break;
+                case "客车":
+                    this.vehicleClass="K11";break;
+                default:
+                    this.vehicleClass=null;break;
+            }
+        }
     }
 
     public String getVehicleBrand() {
-        if(vehicleBrand!=null){
-            switch (vehicleBrand){
-                case "不限":
-                    vehicleBrand=null;break;
-                case "GMC":
-                    vehicleBrand="1";break;
-                case "MG":
-                    vehicleBrand="2";break;
-                case "MINI":
-                    vehicleBrand="3";break;
-                case "安凯":
-                    vehicleBrand="4";break;
-                case "奥驰":
-                    vehicleBrand="5";break;
-                default:
-                    vehicleBrand=null;
-                    break;
-            }
-        }
         return vehicleBrand;
     }
 
     public void setVehicleBrand(String vehicleBrand) {
         this.vehicleBrand = vehicleBrand;
+        if(vehicleBrand!=null){
+            switch (vehicleBrand){
+                case "不限":
+                    this.vehicleBrand=null;break;
+                case "GMC":
+                    this.vehicleBrand="1";break;
+                case "MG":
+                    this.vehicleBrand="2";break;
+                case "MINI":
+                    this.vehicleBrand="3";break;
+                case "安凯":
+                    this.vehicleBrand="4";break;
+                case "奥驰":
+                    this.vehicleBrand="5";break;
+                default:
+                    this.vehicleBrand=null;
+                    break;
+            }
+        }
     }
 
     public String getVehicleColor() {
-        if (vehicleColor!=null){
-            switch (vehicleColor){
-                case "不限":
-                    vehicleColor=null;break;
-                case "红色":
-                    vehicleColor="E";break;
-                case "棕色":
-                    vehicleColor="I";break;
-                case "黄色":
-                    vehicleColor="C";break;
-                case "绿色":
-                    vehicleColor="G";break;
-                case "蓝色":
-                    vehicleColor="H";break;
-                case "紫色":
-                    vehicleColor="F";break;
-                case "黑色":
-                    vehicleColor="J";break;
-                case "白色":
-                    vehicleColor="A";break;
-                default:
-                    vehicleColor=null;break;
-            }
-        }
         return vehicleColor;
     }
 
     public void setVehicleColor(String vehicleColor) {
         this.vehicleColor = vehicleColor;
+        if (vehicleColor!=null){
+            switch (vehicleColor){
+                case "不限":
+                    this.vehicleColor=null;break;
+                case "红色":
+                    this.vehicleColor="E";break;
+                case "棕色":
+                    this.vehicleColor="I";break;
+                case "黄色":
+                    vehicleColor="C";break;
+                case "绿色":
+                    this.vehicleColor="G";break;
+                case "蓝色":
+                    this.vehicleColor="H";break;
+                case "紫色":
+                    this.vehicleColor="F";break;
+                case "黑色":
+                    this.vehicleColor="J";break;
+                case "白色":
+                    this.vehicleColor="A";break;
+                default:
+                    this.vehicleColor=null;break;
+            }
+        }
     }
 
     public String getDirection() {
-        if (direction!=null){
-            switch (direction){
-                case "不限":
-                    direction=null;break;
-                case "上":
-                    direction="1";break;
-                case "下":
-                    direction="2";break;
-                case "左":
-                    direction="3";break;
-                case "右":
-                    direction="4";break;
-                default:
-                    direction=null;break;
-            }
-        }
         return direction;
     }
 
     public void setDirection(String direction) {
         this.direction = direction;
+        if (direction!=null){
+            switch (direction){
+                case "不限":
+                    this.direction=null;break;
+                case "上":
+                    this.direction="1";break;
+                case "下":
+                    this.direction="2";break;
+                case "左":
+                    this.direction="3";break;
+                case "右":
+                    this.direction="4";break;
+                default:
+                    this.direction=null;break;
+            }
+        }
     }
 
     public String getSpeed() {
-        if (speed!=null){
-            switch (speed){
-                case "不限":
-                    speed=null;break;
-                case "慢":
-                    speed="1";break;
-                case "中":
-                    speed="2";break;
-                case "快":
-                    speed="3";break;
-                default:
-                    speed=null;break;
-            }
-        }
         return speed;
     }
 
     public void setSpeed(String speed) {
         this.speed = speed;
+        if (speed!=null){
+            switch (speed){
+                case "不限":
+                    this.speed=null;break;
+                case "慢":
+                    this.speed="1";break;
+                case "中":
+                    this.speed="2";break;
+                case "快":
+                    this.speed="3";break;
+                default:
+                    this.speed=null;break;
+            }
+        }
     }
 
     @Override
