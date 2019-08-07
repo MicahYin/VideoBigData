@@ -5,10 +5,12 @@ import com.guet.domain.FaceSearchInfo;
 import com.guet.domain.FaceSearchResult;
 import com.guet.domain.PedestrianSearchResult;
 import com.guet.service.FaceSearchService;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
@@ -47,5 +49,10 @@ public class FaceSearchController {
         Date end=new Date();
         System.out.println("faceSearch总耗时:"+(end.getTime()-start.getTime()));
         return mv;
+    }
+    @RequestMapping("/findFaceNewest.do")
+    @ResponseBody
+    public String findFaceNewest(){
+        return JSONArray.fromObject(faceSearchService.findFaceNewest()).toString();
     }
 }

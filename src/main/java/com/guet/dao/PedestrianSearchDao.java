@@ -31,7 +31,7 @@ public class PedestrianSearchDao {
      */
     public List<PedestrianSearchResult> pedestrianSearch(PedestrianSearchInfo info,HashMap<String,Object> map){
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person2").setTypes("personlist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
         //dataType为2时为行人
@@ -106,7 +106,7 @@ public class PedestrianSearchDao {
      */
     public Long selectCount(PedestrianSearchInfo info){
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person2").setTypes("personlist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
         //dataType为2时为行人
@@ -163,16 +163,16 @@ public class PedestrianSearchDao {
 
     /**
      * 查询按时间排序后（无任何筛选条件），最新的三条数据
-     * @return 最新的三条数据
+     * @return 最新的5条数据
      */
     public List<PedestrianSearchResult> pedestrianNewest(){
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person2").setTypes("personlist");
         //dataType为2时为行人
         QueryBuilder queryBuilder= QueryBuilders.matchPhraseQuery("dataType","2");
         SearchResponse searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery()
                 .must(queryBuilder))
-                .setFrom(0).setSize(3)
+                .setFrom(0).setSize(5)
                 .addSort("personAppearTime", SortOrder.DESC)
                 .execute()
                 .actionGet();
@@ -181,9 +181,6 @@ public class PedestrianSearchDao {
         SearchHits hits=searchResponse.getHits();
         for (SearchHit hit:hits){
             JSONObject json = JSONObject.fromObject(hit.getSourceAsString());
-            System.out.println("---------------------------------------------");
-            System.out.println(json);
-            System.out.println("---------------------------------------------");
             PedestrianSearchResult pedestrianSearchResult=new PedestrianSearchResult();
             pedestrianSearchResult.setPersonAppearTime(ElasticSearchTool.formatTimeToNomal(json.getString("personAppearTime")));
             pedestrianSearchResult.setTaskIp(json.getString("taskIp"));

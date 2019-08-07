@@ -11,6 +11,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +34,7 @@ public class FaceSearchDao {
     public List<FaceSearchResult> faceSearch(FaceSearchInfo info,HashMap<String,Object> map){
 
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person2").setTypes("personlist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
         //dataType为1时为人脸
@@ -99,7 +100,7 @@ public class FaceSearchDao {
      */
     public Long selectCount(FaceSearchInfo info){
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person").setTypes("personlist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person2").setTypes("personlist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
         //dataType为1时为人脸
@@ -135,8 +136,6 @@ public class FaceSearchDao {
             QueryBuilder queryBuilder=QueryBuilders.matchPhraseQuery("glassCode",info.getGlassCode());
             queryBuilderList.add(queryBuilder);
         }
-
-
         HashMap<String,Object> map=new HashMap<>();
         map.put("start",0);
         map.put("size",10);
@@ -148,6 +147,38 @@ public class FaceSearchDao {
 //        client.close();
         return hits.totalHits;
     }
-
-
+    /**
+     * 查询按时间排序后（无任何筛选条件），最新的三条数据
+     * @return 最新的三条数据
+     */
+    public List<FaceSearchResult> faceNewest(){
+        TransportClient client= ElasticSearchTool.getClient();
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("person2").setTypes("personlist");
+        //dataType为1时为人脸
+        QueryBuilder queryBuilder=QueryBuilders.matchPhraseQuery("dataType","1");
+        SearchResponse searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery()
+                .must(queryBuilder))
+                .setFrom(0).setSize(3)
+                .addSort("personAppearTime", SortOrder.DESC)
+                .execute()
+                .actionGet();
+        SearchHits hits=searchResponse.getHits();
+        //存放结果的List
+        List<FaceSearchResult> faceSearchResults=new ArrayList<FaceSearchResult>();
+        for(SearchHit hit:hits){
+            JSONObject json = JSONObject.fromObject(hit.getSourceAsString());
+            FaceSearchResult faceSearchResult=new FaceSearchResult();
+            faceSearchResult.setPersonAppearTime(ElasticSearchTool.formatTimeToNomal(json.getString("personAppearTime")));
+            faceSearchResult.setTaskIp(json.getString("taskIp"));
+            faceSearchResult.setTaskName(json.getString("taskName"));
+            faceSearchResult.setDataType(json.getString("dataType"));
+            faceSearchResult.setGenderCode(json.getString("genderCode"));
+            faceSearchResult.setGlassCode(json.getString("glassCode"));
+            faceSearchResult.setAgeGroups(json.getString("ageGroups"));
+            faceSearchResult.setBigPicUrl(json.getString("bigPicUrl"));
+            faceSearchResult.setPicUrl(json.getString("picUrl"));
+            faceSearchResults.add(faceSearchResult);
+        }
+        return faceSearchResults;
+    }
 }

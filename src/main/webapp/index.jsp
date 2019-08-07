@@ -131,21 +131,11 @@
                 </div>
 
                 <div class=" main_right_c swiper-container">
-                        <ul class="swiper-wrapper">
+                        <ul class="swiper-wrapper" id="dataBodyPedestrian">
                             <li  class="swiper-slide">
                                 <img src="${pageContext.request.contextPath}/images/01.jpg">
                                 <img src="${pageContext.request.contextPath}/images/01.jpg">
                                 <img src="${pageContext.request.contextPath}/images/01.jpg">
-                            </li>
-                            <li  class="swiper-slide">
-                                <img src="${pageContext.request.contextPath}/images/02.jpg">
-                                <img src="${pageContext.request.contextPath}/images/02.jpg">
-                                <img src="${pageContext.request.contextPath}/images/02.jpg">
-                            </li>
-                            <li  class="swiper-slide">
-                                <img src="${pageContext.request.contextPath}/images/03.jpg">
-                                <img src="${pageContext.request.contextPath}/images/03.jpg">
-                                <img src="${pageContext.request.contextPath}/images/03.jpg">
                             </li>
                         </ul>
                     <%--<div class="swiper-pagination"></div>--%>
@@ -165,21 +155,11 @@
                 <div class="clearfix">
                 </div>
                 <div class=" main_right_c swiper-container">
-                    <ul class="swiper-wrapper">
+                    <ul class="swiper-wrapper" id="dataBodyCar">
                         <li class="swiper-slide">
                             <img src="${pageContext.request.contextPath}/images/04.jpg">
                             <img src="${pageContext.request.contextPath}/images/04.jpg">
                             <img src="${pageContext.request.contextPath}/images/04.jpg">
-                        </li>
-                        <li class="swiper-slide">
-                            <img src="${pageContext.request.contextPath}/images/05.jpg">
-                            <img src="${pageContext.request.contextPath}/images/05.jpg">
-                            <img src="${pageContext.request.contextPath}/images/05.jpg">
-                        </li>
-                        <li class="swiper-slide">
-                            <img src="${pageContext.request.contextPath}/images/06.jpg">
-                            <img src="${pageContext.request.contextPath}/images/06.jpg">
-                            <img src="${pageContext.request.contextPath}/images/06.jpg">
                         </li>
                     </ul>
                     <!-- <div class="swiper-pagination"></div> -->
@@ -199,21 +179,11 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class=" main_right_c swiper-container">
-                    <ul class="swiper-wrapper">
+                    <ul class="swiper-wrapper" id="dataBodyFace">
                         <li class="swiper-slide">
                             <img src="${pageContext.request.contextPath}/images/07.jpg">
                             <img src="${pageContext.request.contextPath}/images/07.jpg">
                             <img src="${pageContext.request.contextPath}/images/07.jpg">
-                        </li>
-                        <li class="swiper-slide">
-                            <img src="${pageContext.request.contextPath}/images/08.jpg">
-                            <img src="${pageContext.request.contextPath}/images/08.jpg">
-                            <img src="${pageContext.request.contextPath}/images/08.jpg">
-                        </li>
-                        <li class="swiper-slide">
-                            <img src="${pageContext.request.contextPath}/images/09.jpg">
-                            <img src="${pageContext.request.contextPath}/images/09.jpg">
-                            <img src="${pageContext.request.contextPath}/images/09.jpg">
                         </li>
                     </ul>
                     <!-- <div class="swiper-pagination"></div> -->
@@ -233,21 +203,30 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
-
 <script>
+    //格式化时间的函数
+    Date.prototype.format = function(fmt) {
+    var o = {
+        "M+" : this.getMonth()+1,                 //月份
+        "d+" : this.getDate(),                    //日
+        "h+" : this.getHours(),                   //小时
+        "m+" : this.getMinutes(),                 //分
+        "s+" : this.getSeconds(),                 //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S"  : this.getMilliseconds()             //毫秒
+    };
+    if(/(y+)/.test(fmt)) {
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
+    for(var k in o) {
+        if(new RegExp("("+ k +")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+    return fmt;
+    };
     /* 首页幻灯*/
     var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        navigation: {
-            nextEl: '.reset_next',
-            prevEl: '.reset_prev'
-        }
-    });
-</script>
-<script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
         paginationClickable: true,
         speed: 2000,
         loop: true,//设置为true时自动播放，默认为false
@@ -259,19 +238,75 @@
             disableOnInteraction: false
         }
     });
-
     //定时刷新函数
     $(document).ready(function () {
-        setInterval("startRequest()", 3000);//3s一次
+        setInterval("startRequest()", 5000);//5s一次
     });
+    var lasttimePedestrian="";
+    var contentPedestrian="";
+    var lasttimeCar="";
+    var contentCar="";
+    var lasttimeFace="";
+    var contentFace="";
     function startRequest(){
         $.ajax({
             url:  "${pageContext.request.contextPath}/pedestrianSearch/findPedestrianNewest.do",
             type: 'POST',
             success: function (data) {
                 var realtime=JSON.parse(data);//最新的数据
-                console.log(realtime);
                 //如果时间时间没变，那么数据未更新
+                if((new Date(realtime[0].personAppearTime).format("yyyy-MM-dd hh:mm:ss"))!=(new Date(lasttimePedestrian).format("yyyy-MM-dd hh:mm:ss"))){
+                    lasttimePedestrian=realtime[0].personAppearTime;
+                    contentPedestrian+='<li  class="swiper-slide"><img src='+realtime[0].picUrl+' height="120" width="60">'+'\n'+'\n';
+                    contentPedestrian+='<img src='+realtime[1].picUrl+' height="120" width="60">'+'\n'+'\n';
+                    contentPedestrian+='<img src='+realtime[2].picUrl+' height="120" width="60">'+'\n'+'\n';
+                    contentPedestrian+='<img src='+realtime[3].picUrl+' height="120" width="60">'+'\n'+'\n';
+                    contentPedestrian+='<img src='+realtime[4].picUrl+' height="120" width="60"></li>';
+                    $("#dataBodyPedestrian").html(contentPedestrian);
+                }else {
+                    console.log("Pedestrian时间相等");
+                }
+            },
+            error : function(jqXHR) {
+                alert("发生错误：" + jqXHR.status);
+            }
+        });
+        $.ajax({
+            url:  "${pageContext.request.contextPath}/carSearch/findCarNewest.do",
+            type: 'POST',
+            success: function (data) {
+                var realtime=JSON.parse(data);//最新的数据
+                //如果时间时间没变，那么数据未更新
+                if((new Date(realtime[0].appearTime).format("yyyy-MM-dd hh:mm:ss"))!=(new Date(lasttimeCar).format("yyyy-MM-dd hh:mm:ss"))){
+                    lasttimeCar=realtime[0].appearTime;
+                    contentCar+='<li  class="swiper-slide"><img src='+realtime[0].storageUrl1+' width="120" height="120">'+'\n';
+                    contentCar+='<img src='+realtime[1].storageUrl1+' width="120" height="120">'+'\n';
+                    contentCar+='<img src='+realtime[2].storageUrl1+' width="120" height="120"></li>';
+                    $("#dataBodyCar").html(contentCar);
+                }else {
+                    console.log("Car时间相等")
+                }
+            },
+            error : function(jqXHR) {
+                alert("发生错误：" + jqXHR.status);
+            }
+        });
+
+        $.ajax({
+            url:  "${pageContext.request.contextPath}/faceSearch/findFaceNewest.do",
+            type: 'POST',
+            success: function (data) {
+                var realtime=JSON.parse(data);//最新的数据
+                //如果时间时间没变，那么数据未更新
+                if((new Date(realtime[0].personAppearTime).format("yyyy-MM-dd hh:mm:ss"))!=(new Date(lasttimeFace).format("yyyy-MM-dd hh:mm:ss"))){
+                    lasttimeFace=realtime[0].personAppearTime;
+                    contentFace+='<li  class="swiper-slide"><img src='+realtime[0].picUrl+' width="120" height="120">'+'\n';
+                    contentFace+='<img src='+realtime[1].picUrl+' width="120" height="120">'+'\n';
+                    contentFace+='<img src='+realtime[2].picUrl+' width="120" height="120"></li>';
+                    $("#dataBodyFace").html(contentFace);
+                }else {
+                    console.log("Face时间相等");
+                }
             },
             error : function(jqXHR) {
                 alert("发生错误：" + jqXHR.status);

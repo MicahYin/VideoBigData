@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author MicahYin
@@ -34,5 +35,10 @@ public class FaceSearchServiceImpl implements FaceSearchService{
         map.put("size", page.getPagesize());
         page.setDatas(faceSearchDao.faceSearch(info,map));
         return page;
+    }
+
+    @Override
+    public List<FaceSearchResult> findFaceNewest() {
+        return faceSearchDao.faceNewest();
     }
 }

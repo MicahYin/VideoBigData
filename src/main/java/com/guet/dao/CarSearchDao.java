@@ -12,6 +12,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class CarSearchDao {
      */
     public List<CarSearchResult> carSearch(CarSearchInfo info, HashMap<String, Object> map){
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("vehicle").setTypes("motorvehiclelist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("vehicle2").setTypes("motorvehiclelist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
         //开始时间和结束时间都不为NULL
@@ -106,7 +107,7 @@ public class CarSearchDao {
      */
     public Long selectCount(CarSearchInfo info) {
         TransportClient client= ElasticSearchTool.getClient();
-        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("vehicle").setTypes("motorvehiclelist");
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("vehicle2").setTypes("motorvehiclelist");
         //存放查询条件的List
         List<QueryBuilder> queryBuilderList=new ArrayList<QueryBuilder>();
         //开始时间和结束时间都不为NULL
@@ -151,5 +152,40 @@ public class CarSearchDao {
         SearchResponse sr=ElasticSearchTool.getSearchResponse(queryBuilderList,searchRequestBuilder,map);
         SearchHits hits=sr.getHits();
         return hits.totalHits;
+    }
+
+    /**
+     * 查询按时间排序后（无任何筛选条件），最新的三条数据
+     * @return 最新的三条数据
+     */
+    public List<CarSearchResult> carNewest(){
+        TransportClient client= ElasticSearchTool.getClient();
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("vehicle2").setTypes("motorvehiclelist");
+        SearchResponse searchResponse=searchRequestBuilder.setQuery(QueryBuilders.boolQuery())
+                .setFrom(0).setSize(3)
+                .addSort("appearTime", SortOrder.DESC)
+                .execute()
+                .actionGet();
+        SearchHits hits=searchResponse.getHits();
+        //存放结果的List
+        List<CarSearchResult> carSearchResults=new ArrayList<CarSearchResult>();
+        for (SearchHit hit:hits){
+            JSONObject json = JSONObject.fromObject(hit.getSourceAsString());
+            CarSearchResult carSearchResult=new CarSearchResult();
+            carSearchResult.setAppearTime(ElasticSearchTool.formatTimeToNomal(json.getString("appearTime")));
+            carSearchResult.setTaskIp(json.getString("taskIp"));
+            carSearchResult.setTaskName(json.getString("taskName"));
+            carSearchResult.setVehicleClass(json.getString("vehicleClass"));
+            carSearchResult.setVehicleBrand(json.getString("vehicleBrand"));
+            carSearchResult.setVehicleModel(json.getString("vehicleModel"));
+            carSearchResult.setVehicleColor(json.getString("vehicleColor"));
+            carSearchResult.setSpeed(json.getString("speed"));
+            carSearchResult.setDirection(json.getString("direction"));
+            carSearchResult.setPlateNo(json.getString("plateNo"));
+            carSearchResult.setStorageUrl1(json.getString("storageUrl1"));
+            carSearchResult.setStorageUrl2(json.getString("storageUrl2"));
+            carSearchResults.add(carSearchResult);
+        }
+        return carSearchResults;
     }
 }

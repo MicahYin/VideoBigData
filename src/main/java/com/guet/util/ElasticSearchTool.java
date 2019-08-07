@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class ElasticSearchTool {
 
-    private static String host="172.25.6.13"; // 服务器地址
+    private static String host="172.25.6.7"; // 服务器地址
     private static int port=9300; // 端口
     private static TransportClient client=null;
     /**
@@ -39,8 +39,8 @@ public class ElasticSearchTool {
             try {
                 client = new PreBuiltTransportClient(settings)
                         .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host),port));
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+//                e.printStackTrace();
                 throw new RuntimeException("获取client失败...");
             }
         }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author MicahYin
@@ -36,5 +37,10 @@ public class CarSearchServiceImpl implements CarSearchService{
         page.setDatas(carSearchDao.carSearch(info,map));
 
         return page;
+    }
+
+    @Override
+    public List<CarSearchResult> findCarNewest() {
+        return carSearchDao.carNewest();
     }
 }

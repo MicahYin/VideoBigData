@@ -4,10 +4,12 @@ import com.guet.domain.Page;
 import com.guet.domain.CarSearchInfo;
 import com.guet.domain.CarSearchResult;
 import com.guet.service.CarSearchService;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
@@ -49,5 +51,11 @@ public class CarSearchController {
         Date end=new Date();
         System.out.println("CarSearch总耗时:"+(end.getTime()-start.getTime()));
         return mv;
+    }
+
+    @RequestMapping("/findCarNewest.do")
+    @ResponseBody
+    public String findCarNewest(){
+        return JSONArray.fromObject(carSearchService.findCarNewest()).toString();
     }
 }
